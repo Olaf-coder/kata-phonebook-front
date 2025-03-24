@@ -14,7 +14,13 @@
         <li>{{contactMauvais.id}}, {{contactMauvais.firstName}}, {{contactMauvais.familyName}}, {{contactMauvais.email}}, {{contactMauvais.phoneNumber}}</li>
     }
 
-<!--    <p>contact works!</p>-->
+    <!--<input type="text" [(ngModel)]="internalValue" id="test"/>-->
+    <input type="text" [(ngModel)]="idToDelete" id="test" [value]="idToDelete"/>
+    <button (click)="deleteContactById(idToDelete)">buttonToClick</button>
+<!--    <p>Length: {{result}}</p>-->
+
+
+    <!--    <p>contact works!</p>-->
 <!--    <p>second test sans rien </p>-->
 <!--    <mat-slide-toggle>Toggle me!</mat-slide-toggle>-->
 

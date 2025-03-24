@@ -6,7 +6,7 @@ import {Observable, tap} from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
-export class ContactService {
+export class ContactApi {
   private http = inject(HttpClient);
   private contacts = signal<Contact[]>([])
   readonly baseEndpoint = "api/v1.0/contacts/"
