@@ -9,7 +9,7 @@ import {Observable, tap} from "rxjs";
 export class ContactService {
   private http = inject(HttpClient);
   private contacts = signal<Contact[]>([])
-  readonly baseEndpoint = "http://locahost:8080/contacts"
+  readonly baseEndpoint = "api/v1.0/contacts/"
 
   // constructor() { }
 
@@ -18,11 +18,16 @@ export class ContactService {
   }
 
   getContact(id:number): Observable<Contact> {
-    return this.http.get<Contact>(`${this.baseEndpoint}/{$this.id}`);
+    return this.http.get<Contact>(`${this.baseEndpoint}/{$this.id}/`);
   }
 
   postData(id: number, newContact: Contact): Observable<Contact> {
-    return this.http.post(`${this.baseEndpoint}/{$this.id}`, newContact); // Remplacez par votre endpoint
+    // this.http.post()
+    return this.http.post<Contact>(`${this.baseEndpoint}/{$this.id}/`, newContact); // Remplacez par votre endpoint
+  }
+
+  deleteContact(id:number): Observable<void> {
+    return this.http.delete<void>(`${this.baseEndpoint}/{$this.id}/`);
   }
 
 
