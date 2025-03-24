@@ -1,5 +1,19 @@
 <div id="app">
     <h1>Contacts</h1>
+    @for (contact of contacts; track contact.id) {
+        <li>{{contact.id}}, {{contact.firstName}}, {{contact.familyName}}, {{contact.email}}, {{contact.phoneNumber}}</li>
+    } @empty {
+        <div>Nothing to show !</div>
+    }
+
+    @if (contactSolo) {
+        <li>{{contactSolo.id}}, {{contactSolo.firstName}}, {{contactSolo.familyName}}, {{contactSolo.email}}, {{contactSolo.phoneNumber}}</li>
+    }
+
+    @if (contactMauvais) {
+        <li>{{contactMauvais.id}}, {{contactMauvais.firstName}}, {{contactMauvais.familyName}}, {{contactMauvais.email}}, {{contactMauvais.phoneNumber}}</li>
+    }
+
 <!--    <p>contact works!</p>-->
 <!--    <p>second test sans rien </p>-->
 <!--    <mat-slide-toggle>Toggle me!</mat-slide-toggle>-->
@@ -7,7 +21,3 @@
 <!--    <mat-table></mat-table>-->
 
 </div>
-<!--&lt;!&ndash;<input type="text" [(ngModel)]="internalValue" id="test"/>&ndash;&gt;-->
-<!--<input type="text" [(ngModel)]="text" id="test"/>-->
-<!--<button (click)="calculateNumber()">buttonToClick</button>-->
-<!--<p>Length: {{result}}</p>-->

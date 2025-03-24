@@ -3,7 +3,6 @@ import {FormsModule} from "@angular/forms";
 import {MatTable} from "@angular/material/table";
 import {Contact} from "../../model/contact.model";
 import {ContactService} from "../../service/contact.service";
-import { provideHttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-contact',
@@ -17,26 +16,39 @@ import { provideHttpClient } from '@angular/common/http';
 export class ContactComponent {
 
   contacts: Contact[] = [];
+  contactSolo?: Contact;
+  contactMauvais?: Contact;
 
   constructor(private contactApiService: ContactService) {
   }
 
   ngOnInit(): void {
-    // this.contactApiService.getContacts().subscribe(
-    //   data => {
-    //     this.contacts = data;
-    //   },
-    //   error => {
-    //     console.error('Désolé, une erreur a été remonté durant la récuperation', error);
-    //   }
-    // )
-
     this.contactApiService.getContacts().subscribe({
       next:(response)=>{
-        this.contacts = response
-        console.log('GET OK: ', response)
+        this.contacts = response;
+        console.log('GET OK: ', response);
       },
       error: (error) => {
+        console.error('Désolé, une erreur a été remonté durant la récuperation', error);
+      }
+    })
+
+    this.contactApiService.getContact(1).subscribe({
+      next:(response) => {
+        this.contactSolo = response;
+        console.log('GET OK: ', response);
+      },
+      error:(error) => {
+        console.error('Désolé, une erreur a été remonté durant la récuperation', error);
+      }
+    })
+
+    this.contactApiService.getContact(100).subscribe({
+      next:(response) => {
+        this.contactMauvais = response;
+        console.log('GET OK: ', response);
+      },
+      error:(error) => {
         console.error('Désolé, une erreur a été remonté durant la récuperation', error);
       }
     })

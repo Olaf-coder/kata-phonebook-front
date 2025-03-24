@@ -18,16 +18,16 @@ export class ContactService {
   }
 
   getContact(id:number): Observable<Contact> {
-    return this.http.get<Contact>(`${this.baseEndpoint}/{$this.id}/`);
+    return this.http.get<Contact>(`${this.baseEndpoint}${id}`);
   }
 
   postData(id: number, newContact: Contact): Observable<Contact> {
     // this.http.post()
-    return this.http.post<Contact>(`${this.baseEndpoint}/{$this.id}/`, newContact); // Remplacez par votre endpoint
+    return this.http.post<Contact>(`${this.baseEndpoint}${id}`, newContact); // Remplacez par votre endpoint
   }
 
   deleteContact(id:number): Observable<void> {
-    return this.http.delete<void>(`${this.baseEndpoint}/{$this.id}/`);
+    return this.http.delete<void>(`${this.baseEndpoint}${id}`);
   }
 
 
