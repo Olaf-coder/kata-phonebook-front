@@ -1,22 +1,42 @@
 <div id="app">
+
+    @if (errorMessage) {
+        <div>{{errorMessage}}</div>
+    }
+
     <h1>Contacts</h1>
     @for (contact of contacts; track contact.id) {
-        <li>{{contact.id}}, {{contact.firstName}}, {{contact.familyName}}, {{contact.email}}, {{contact.phoneNumber}}</li>
+        <div>{{contact.id}}, {{contact.firstName}}, {{contact.familyName}}, {{contact.email}}, {{contact.phoneNumber}}</div>
     } @empty {
         <div>Nothing to show !</div>
     }
 
     @if (contactSolo) {
-        <li>{{contactSolo.id}}, {{contactSolo.firstName}}, {{contactSolo.familyName}}, {{contactSolo.email}}, {{contactSolo.phoneNumber}}</li>
+        <div>{{contactSolo.id}}, {{contactSolo.firstName}}, {{contactSolo.familyName}}, {{contactSolo.email}}, {{contactSolo.phoneNumber}}</div>
     }
 
     @if (contactMauvais) {
-        <li>{{contactMauvais.id}}, {{contactMauvais.firstName}}, {{contactMauvais.familyName}}, {{contactMauvais.email}}, {{contactMauvais.phoneNumber}}</li>
+        <div>{{contactMauvais.id}}, {{contactMauvais.firstName}}, {{contactMauvais.familyName}}, {{contactMauvais.email}}, {{contactMauvais.phoneNumber}}</div>
     }
-
+<br/>
     <!--<input type="text" [(ngModel)]="internalValue" id="test"/>-->
-    <input type="text" [(ngModel)]="idToDelete" id="test" [value]="idToDelete"/>
-    <button (click)="deleteContactById(idToDelete)">buttonToClick</button>
+    <h2>Supression de contact</h2>
+    <div class="groupe">
+        <div>id to delete</div>
+        <input type="text" [(ngModel)]="idToDelete" id="test" [value]="idToDelete"/>
+        <button (click)="deleteContactById(idToDelete)">buttonToClick</button>
+    </div>
+<br/><br/>
+    <h2>Ajout de contact</h2>
+    <h3>Au format id, prenom, nom, numero de telephone, email</h3>
+    <div class="groupe">
+        <input type="text" [(ngModel)]="idToAdd" id="idToAdd" [value]="idToAdd"/>
+        <input type="text" [(ngModel)]="firstNameToAdd" id="firstNameToAdd" [value]="firstNameToAdd"/>
+        <input type="text" [(ngModel)]="lastNameToAdd" id="lastNameToAdd" [value]="lastNameToAdd"/>
+        <input type="text" [(ngModel)]="phoneNumberToAdd" id="phoneNumberToAdd" [value]="phoneNumberToAdd"/>
+        <input type="text" [(ngModel)]="emailToAdd" id="emailToAdd" [value]="emailToAdd"/>
+        <button (click)="sendContactToCreate()">buttonToClick</button>
+    </div>
 <!--    <p>Length: {{result}}</p>-->
 
 

@@ -15,18 +15,20 @@ import {ContactApi} from "../../service/contact.api";
 })
 export class ContactComponent {
 
+  errorMessage: string;
+
   contacts: Contact[] = [];
   contactSolo: Contact;
   contactMauvais: Contact;
 
   idToDelete:number = 0;
 
-  // text: string = "";
-  // result:number = 0;
-  //
-  calculateNumber(){
-    // this.
-  }
+  idToAdd: number = 0;
+  firstNameToAdd: string = "";
+  lastNameToAdd: string = "";
+  phoneNumberToAdd: string = "";
+  emailToAdd: string = "";
+
 
 
   constructor(private contactApiService: ContactApi) {
@@ -34,7 +36,7 @@ export class ContactComponent {
 
   ngOnInit(): void {
     this.getAllContacts();
-    this.getContactById(1);
+    this.getContactById(50);
 
   }
 
@@ -45,7 +47,9 @@ export class ContactComponent {
         console.log('GET OK: ', response);
       },
       error: (error) => {
+        const errorToPrint = `Désolé, une erreur a été remonté durant la récuperation: ${error.status}, ${error.statusText} `
         console.error('Désolé, une erreur a été remonté durant la récuperation', error);
+        this.errorMessage = errorToPrint;
       }
     })
   }
@@ -57,7 +61,9 @@ export class ContactComponent {
         console.log('GET OK: ', response);
       },
       error:(error) => {
+        const errorToPrint = `Désolé, une erreur a été remonté durant la récuperation: ${error.status}, ${error.statusText} `
         console.error('Désolé, une erreur a été remonté durant la récuperation', error);
+        this.errorMessage = errorToPrint;
       },
       complete() {
 
@@ -65,19 +71,6 @@ export class ContactComponent {
     })
   }
 
-  getContactByIdTarget(id: number, contactTarget:Contact) {
-    this.contactApiService.getContact(id).subscribe({
-      next:(response) => {
-        contactTarget = response;
-        console.log('GET OK: ', response);
-      },
-      error:(error) => {
-        console.error('Désolé, une erreur a été remonté durant la récuperation', error);
-      },
-      complete() {
-      }
-    })
-  }
 
   deleteContactById(id: number) {
     this.contactApiService.deleteContact(id).subscribe({
@@ -88,13 +81,17 @@ export class ContactComponent {
     })
   }
 
+  sendContactToCreate() {
+    // this.errorMessage = "J'ai une erreur !"
+    console.log(`contact to send: ${this.idToAdd}, ${this.firstNameToAdd}, ${this.lastNameToAdd}, ${this.phoneNumberToAdd}, ${this.emailToAdd}`)
+    // contactToCreate: Contact = {}
+    this.getContactById(50);
+  }
   // readonly name= input.required<string>() ;
   // text: string = "";
   // result:number = 0;
   //
   // calculateNumber(){
   //   this.result = this.text.length;
-
-
 
 }
