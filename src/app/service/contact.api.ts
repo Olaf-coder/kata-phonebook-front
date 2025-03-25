@@ -11,7 +11,6 @@ export class ContactApi {
   private contacts = signal<Contact[]>([])
   readonly baseEndpoint = "api/v1.0/contacts/"
 
-  // constructor() { }
 
   getContacts(): Observable<Contact[]> {
     return this.http.get<Contact[]>(this.baseEndpoint);
@@ -21,9 +20,12 @@ export class ContactApi {
     return this.http.get<Contact>(`${this.baseEndpoint}${id}`);
   }
 
-  postData(id: number, newContact: Contact): Observable<Contact> {
-    // this.http.post()
-    return this.http.post<Contact>(`${this.baseEndpoint}${id}`, newContact); // Remplacez par votre endpoint
+  addContact(contactToAdd: Contact): Observable<Contact> {
+    return this.http.post<Contact>(`${this.baseEndpoint}`, contactToAdd);
+  }
+
+  updateContact(id: number, contactToUpdate: Contact): Observable<Contact> {
+    return this.http.put<Contact>(`${this.baseEndpoint}${id}`, contactToUpdate);
   }
 
   deleteContact(id:number): Observable<void> {

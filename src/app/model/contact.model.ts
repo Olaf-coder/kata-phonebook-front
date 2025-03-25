@@ -1,9 +1,9 @@
 
 
 export class Contact {
-    id: number;
-    familyName: string;
+    id?: number;
     firstName: string;
-    email: string;
-    phoneNumber: string;
+    familyName: string;
+    email?: string;
+    phoneNumber?: string;
 }

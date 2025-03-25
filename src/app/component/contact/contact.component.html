@@ -1,9 +1,9 @@
 <div id="app">
 
-    @if (errorMessage) {
-        <div>{{errorMessage}}</div>
-    }
 
+    @if (errorMessageGet) {
+        {{errorMessageGet}}
+    }
     <h1>Contacts</h1>
     @for (contact of contacts; track contact.id) {
         <div>{{contact.id}}, {{contact.firstName}}, {{contact.familyName}}, {{contact.email}}, {{contact.phoneNumber}}</div>
@@ -11,39 +11,41 @@
         <div>Nothing to show !</div>
     }
 
-    @if (contactSolo) {
-        <div>{{contactSolo.id}}, {{contactSolo.firstName}}, {{contactSolo.familyName}}, {{contactSolo.email}}, {{contactSolo.phoneNumber}}</div>
-    }
-
-    @if (contactMauvais) {
-        <div>{{contactMauvais.id}}, {{contactMauvais.firstName}}, {{contactMauvais.familyName}}, {{contactMauvais.email}}, {{contactMauvais.phoneNumber}}</div>
-    }
-<br/>
-    <!--<input type="text" [(ngModel)]="internalValue" id="test"/>-->
+    <br/><br/>
     <h2>Supression de contact</h2>
     <div class="groupe">
         <div>id to delete</div>
         <input type="text" [(ngModel)]="idToDelete" id="test" [value]="idToDelete"/>
         <button (click)="deleteContactById(idToDelete)">buttonToClick</button>
     </div>
-<br/><br/>
+
+
+    <br/><br/>
     <h2>Ajout de contact</h2>
-    <h3>Au format id, prenom, nom, numero de telephone, email</h3>
+<!--    <h3>Au format id, prenom, nom, numero de telephone, email</h3>-->
+    @if (errorMessageCreate) {
+        <div>{{errorMessageCreate}}</div>
+    }
     <div class="groupe">
-        <input type="text" [(ngModel)]="idToAdd" id="idToAdd" [value]="idToAdd"/>
-        <input type="text" [(ngModel)]="firstNameToAdd" id="firstNameToAdd" [value]="firstNameToAdd"/>
-        <input type="text" [(ngModel)]="lastNameToAdd" id="lastNameToAdd" [value]="lastNameToAdd"/>
-        <input type="text" [(ngModel)]="phoneNumberToAdd" id="phoneNumberToAdd" [value]="phoneNumberToAdd"/>
-        <input type="text" [(ngModel)]="emailToAdd" id="emailToAdd" [value]="emailToAdd"/>
+        <input type="text" [(ngModel)]="firstNameToAdd" id="firstNameToAdd" [value]="firstNameToAdd" placeholder="Prénom"/>
+        <input type="text" [(ngModel)]="familyNameToAdd" id="lastNameToAdd" [value]="familyNameToAdd" placeholder="Nom"/>
+        <input type="text" [(ngModel)]="phoneNumberToAdd" id="phoneNumberToAdd" [value]="phoneNumberToAdd" placeholder="Numéro de téléphone"/>
+        <input type="text" [(ngModel)]="emailToAdd" id="emailToAdd" [value]="emailToAdd" placeholder="Adresse email"/>
         <button (click)="sendContactToCreate()">buttonToClick</button>
     </div>
-<!--    <p>Length: {{result}}</p>-->
 
-
-    <!--    <p>contact works!</p>-->
-<!--    <p>second test sans rien </p>-->
-<!--    <mat-slide-toggle>Toggle me!</mat-slide-toggle>-->
-
-<!--    <mat-table></mat-table>-->
+    <br/><br/>
+    <h2>Modification de contact</h2>
+    @if (errorMessageUpdate) {
+        <div>{{errorMessageUpdate}}</div>
+    }
+    <div class="groupe">
+        <input type="text" [(ngModel)]="idToUpdate" id="idToUpdate" [value]="idToUpdate"/>
+        <input type="text" [(ngModel)]="firstNameToUpdate" id="firstNameToUpdate" [value]="firstNameToUpdate" placeholder="Prénom"/>
+        <input type="text" [(ngModel)]="familyNameToUpdate" id="lastNameToUpdate" [value]="familyNameToUpdate" placeholder="Nom"/>
+        <input type="text" [(ngModel)]="phoneNumberToUpdate" id="phoneNumberToUpdate" [value]="phoneNumberToUpdate" placeholder="Numéro de téléphone"/>
+        <input type="text" [(ngModel)]="emailToUpdate" id="emailToUpdate" [value]="emailToUpdate" placeholder="Adresse email"/>
+        <button (click)="sendContactToUpdate()">buttonToClick</button>
+    </div>
 
 </div>

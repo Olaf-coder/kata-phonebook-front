@@ -1,33 +1,38 @@
 import {Component, OnInit, input} from '@angular/core';
 import {FormsModule} from "@angular/forms";
-import {MatTable} from "@angular/material/table";
 import {Contact} from "../../model/contact.model";
 import {ContactApi} from "../../service/contact.api";
 
 @Component({
   selector: 'app-contact',
   imports: [
-    FormsModule,
-    MatTable
+    FormsModule
   ],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss'
 })
 export class ContactComponent {
 
-  errorMessage: string;
+  errorMessageGet?:string
+  errorMessageCreate?: string;
+  errorMessageUpdate?: string;
 
   contacts: Contact[] = [];
   contactSolo: Contact;
-  contactMauvais: Contact;
 
   idToDelete:number = 0;
 
-  idToAdd: number = 0;
-  firstNameToAdd: string = "";
-  lastNameToAdd: string = "";
-  phoneNumberToAdd: string = "";
-  emailToAdd: string = "";
+  firstNameToAdd?: string ;
+  familyNameToAdd?: string ;
+  phoneNumberToAdd?: string ;
+  emailToAdd?: string ;
+
+
+  idToUpdate: number = 0;
+  firstNameToUpdate?: string ;
+  familyNameToUpdate?: string ;
+  phoneNumberToUpdate?: string;
+  emailToUpdate?: string;
 
 
 
@@ -36,7 +41,6 @@ export class ContactComponent {
 
   ngOnInit(): void {
     this.getAllContacts();
-    this.getContactById(50);
 
   }
 
@@ -49,7 +53,7 @@ export class ContactComponent {
       error: (error) => {
         const errorToPrint = `Désolé, une erreur a été remonté durant la récuperation: ${error.status}, ${error.statusText} `
         console.error('Désolé, une erreur a été remonté durant la récuperation', error);
-        this.errorMessage = errorToPrint;
+        this.errorMessageGet = errorToPrint;
       }
     })
   }
@@ -62,15 +66,14 @@ export class ContactComponent {
       },
       error:(error) => {
         const errorToPrint = `Désolé, une erreur a été remonté durant la récuperation: ${error.status}, ${error.statusText} `
-        console.error('Désolé, une erreur a été remonté durant la récuperation', error);
-        this.errorMessage = errorToPrint;
+        console.error(errorToPrint);
+        this.errorMessageGet = errorToPrint;
       },
       complete() {
 
       }
     })
   }
-
 
   deleteContactById(id: number) {
     this.contactApiService.deleteContact(id).subscribe({
@@ -81,17 +84,76 @@ export class ContactComponent {
     })
   }
 
-  sendContactToCreate() {
-    // this.errorMessage = "J'ai une erreur !"
-    console.log(`contact to send: ${this.idToAdd}, ${this.firstNameToAdd}, ${this.lastNameToAdd}, ${this.phoneNumberToAdd}, ${this.emailToAdd}`)
-    // contactToCreate: Contact = {}
-    this.getContactById(50);
+  createContact(contact:Contact) {
+    this.contactApiService.addContact(contact).subscribe({
+      next:(response) => {
+        console.log(`nouveau contact ajouté: ${response}`)
+        this.getAllContacts()
+        this.errorMessageCreate = undefined;
+        this.cleanAjoutFomulaire();
+      },
+      error:(error) => {
+        const errorToPrint = `Désolé, une erreur a été remonté durant la creation du contact: ${error.status}, ${error.statusText} `
+        console.error(errorToPrint);
+        this.errorMessageCreate = errorToPrint;
+      }
+    })
   }
-  // readonly name= input.required<string>() ;
-  // text: string = "";
-  // result:number = 0;
-  //
-  // calculateNumber(){
-  //   this.result = this.text.length;
+
+  updateContact(contact:Contact) {
+    this.contactApiService.updateContact(contact.id!, contact).subscribe({
+      next:(response) => {
+        console.log(`nouveau contact ajouté: ${response}`)
+        this.getAllContacts()
+        this.errorMessageUpdate = undefined;
+        this.cleanUpdateFomulaire();
+      },
+      error:(error) => {
+        const errorToPrint = `Désolé, une erreur a été remonté durant la modification du contact: ${error.status}, ${error.statusText} `
+        console.error(errorToPrint);
+        this.errorMessageUpdate = errorToPrint;
+      }
+    })
+  }
+
+  sendContactToCreate() {
+    console.log(`contact to send: ${this.firstNameToAdd}, ${this.familyNameToAdd}, ${this.phoneNumberToAdd}, ${this.emailToAdd}`)
+    if(this.firstNameToAdd && this.familyNameToAdd) {
+      var contact: Contact = {
+        firstName: this.firstNameToAdd,
+        familyName: this.familyNameToAdd,
+        phoneNumber: this.phoneNumberToAdd,
+        email: this.phoneNumberToAdd
+      }
+      this.createContact(contact);
+    } else {
+      this.errorMessageCreate = "Erreur, Nom ou Prenom absent"
+    }
+  }
+
+  sendContactToUpdate() {
+    console.log(`contact to send: ${this.idToUpdate}, ${this.firstNameToUpdate}, ${this.familyNameToUpdate}, ${this.phoneNumberToUpdate}, ${this.emailToUpdate}`)
+    if(this.firstNameToUpdate && this.familyNameToUpdate) {
+      var contact : Contact = {id: this.idToUpdate, firstName: this.firstNameToUpdate, familyName: this.familyNameToUpdate, phoneNumber: this.phoneNumberToUpdate, email: this.phoneNumberToUpdate}
+      this.updateContact(contact);
+    } else {
+      this.errorMessageUpdate = "Erreur, Nom ou Prenom absent"
+    }
+  }
+
+  cleanAjoutFomulaire() {
+    this.firstNameToAdd = undefined;
+    this.familyNameToAdd = undefined;
+    this.phoneNumberToAdd = undefined;
+    this.emailToAdd = undefined;
+  }
+
+  cleanUpdateFomulaire() {
+    this.firstNameToUpdate = undefined;
+    this.familyNameToUpdate = undefined;
+    this.phoneNumberToUpdate = undefined;
+    this.emailToUpdate = undefined;
+  }
+
 
 }
