@@ -14,24 +14,22 @@
     <br/><br/>
     <h2>Supression de contact</h2>
     <div class="groupe">
-        <div>id to delete</div>
         <input type="text" [(ngModel)]="idToDelete" id="test" [value]="idToDelete"/>
-        <button (click)="deleteContactById(idToDelete)">buttonToClick</button>
+        <button (click)="deleteContactById(idToDelete)">Supprimer</button>
     </div>
 
 
     <br/><br/>
     <h2>Ajout de contact</h2>
-<!--    <h3>Au format id, prenom, nom, numero de telephone, email</h3>-->
     @if (errorMessageCreate) {
         <div>{{errorMessageCreate}}</div>
     }
     <div class="groupe">
         <input type="text" [(ngModel)]="firstNameToAdd" id="firstNameToAdd" [value]="firstNameToAdd" placeholder="Prénom"/>
-        <input type="text" [(ngModel)]="familyNameToAdd" id="lastNameToAdd" [value]="familyNameToAdd" placeholder="Nom"/>
+        <input type="text" [(ngModel)]="familyNameToAdd" id="familyNameToAdd" [value]="familyNameToAdd" placeholder="Nom"/>
         <input type="text" [(ngModel)]="phoneNumberToAdd" id="phoneNumberToAdd" [value]="phoneNumberToAdd" placeholder="Numéro de téléphone"/>
         <input type="text" [(ngModel)]="emailToAdd" id="emailToAdd" [value]="emailToAdd" placeholder="Adresse email"/>
-        <button (click)="sendContactToCreate()">buttonToClick</button>
+        <button (click)="sendContactToCreate()">Creer</button>
     </div>
 
     <br/><br/>
@@ -42,10 +40,28 @@
     <div class="groupe">
         <input type="text" [(ngModel)]="idToUpdate" id="idToUpdate" [value]="idToUpdate"/>
         <input type="text" [(ngModel)]="firstNameToUpdate" id="firstNameToUpdate" [value]="firstNameToUpdate" placeholder="Prénom"/>
-        <input type="text" [(ngModel)]="familyNameToUpdate" id="lastNameToUpdate" [value]="familyNameToUpdate" placeholder="Nom"/>
+        <input type="text" [(ngModel)]="familyNameToUpdate" id="familyNameToUpdate" [value]="familyNameToUpdate" placeholder="Nom"/>
         <input type="text" [(ngModel)]="phoneNumberToUpdate" id="phoneNumberToUpdate" [value]="phoneNumberToUpdate" placeholder="Numéro de téléphone"/>
         <input type="text" [(ngModel)]="emailToUpdate" id="emailToUpdate" [value]="emailToUpdate" placeholder="Adresse email"/>
-        <button (click)="sendContactToUpdate()">buttonToClick</button>
+        <button (click)="sendContactToUpdate()">Mettre à jour</button>
     </div>
+
+    <br/><br/>
+    <h2>Recherche de contact</h2>
+    @if(errorMessageSearch) {
+     {{errorMessageSearch}}
+    }
+    <div class="groupe">
+        <input type="text" [(ngModel)]="firstNameToSearch" id="firstNameToSearch" [value]="firstNameToSearch" placeholder="Prénom"/>
+        <input type="text" [(ngModel)]="familyNameToSearch" id="familyNameToSearch" [value]="familyNameToSearch" placeholder="Nom"/>
+        <button (click)="rechercherContact()">Rechercher</button>
+    </div>
+
+    @for (contact of contactsSearched; track contact.id) {
+        <div>{{contact.id}}, {{contact.firstName}}, {{contact.familyName}}, {{contact.email}}, {{contact.phoneNumber}}</div>
+    } @empty {
+        <div>Veuillez faire une recherche</div>
+    }
+
 
 </div>

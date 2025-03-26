@@ -16,11 +16,16 @@ export class ContactComponent {
   errorMessageGet?:string
   errorMessageCreate?: string;
   errorMessageUpdate?: string;
+  errorMessageSearch?: string;
 
   contacts: Contact[] = [];
-  contactSolo: Contact;
+  contactsSearched: Contact[] = [];
 
   idToDelete:number = 0;
+
+
+  firstNameToSearch: string ;
+  familyNameToSearch: string ;
 
   firstNameToAdd?: string ;
   familyNameToAdd?: string ;
@@ -54,23 +59,6 @@ export class ContactComponent {
         const errorToPrint = `Désolé, une erreur a été remonté durant la récuperation: ${error.status}, ${error.statusText} `
         console.error('Désolé, une erreur a été remonté durant la récuperation', error);
         this.errorMessageGet = errorToPrint;
-      }
-    })
-  }
-
-  getContactById(id:number) {
-    this.contactApiService.getContact(id).subscribe({
-      next:(response) => {
-        this.contactSolo = response;
-        console.log('GET OK: ', response);
-      },
-      error:(error) => {
-        const errorToPrint = `Désolé, une erreur a été remonté durant la récuperation: ${error.status}, ${error.statusText} `
-        console.error(errorToPrint);
-        this.errorMessageGet = errorToPrint;
-      },
-      complete() {
-
       }
     })
   }
@@ -155,5 +143,25 @@ export class ContactComponent {
     this.emailToUpdate = undefined;
   }
 
+  cleanSearchFomulaire() {
+    this.familyNameToSearch = "";
+    this.firstNameToSearch = "";
+  }
 
+
+  rechercherContact() {
+    if(this.familyNameToSearch || this.firstNameToSearch) {
+      this.contactsSearched = this.contacts
+      if (this.familyNameToSearch) {
+        this.contactsSearched = this.contactsSearched.filter(contact => contact.familyName.toLowerCase().includes(this.familyNameToSearch.toLowerCase()))
+      }
+      if (this.firstNameToSearch) {
+        this.contactsSearched = this.contacts.filter(contact => contact.firstName.toLowerCase().includes(this.firstNameToSearch.toLowerCase()))
+      }
+      this.errorMessageSearch=undefined
+      this.cleanSearchFomulaire();
+    } else {
+      this.errorMessageSearch="Au moins un des champs doit être renseigné"
+    }
+  }
 }
