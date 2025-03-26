@@ -22,8 +22,9 @@ export class DeleteContactComponent {
     this.contactApiService.deleteContact(id!).subscribe({
       next:()=> {
         console.log('DELETE OK')
-        this.notify.emit();
         this.cleanDeleteForm();
+
+        this.notify.emit();
       }
     })
   }
