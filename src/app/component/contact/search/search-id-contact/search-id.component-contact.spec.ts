@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SearchContactComponent } from './search-contact.component';
+import { SearchIdComponentContact } from './search-id.component-contact';
 import {provideHttpClient} from "@angular/common/http";
 
-describe('SearchContactComponent', () => {
-  let component: SearchContactComponent;
-  let fixture: ComponentFixture<SearchContactComponent>;
+describe('SearchIdComponent', () => {
+  let component: SearchIdComponentContact;
+  let fixture: ComponentFixture<SearchIdComponentContact>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SearchContactComponent],
+      imports: [SearchIdComponentContact],
       providers: [provideHttpClient()]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SearchContactComponent);
+    fixture = TestBed.createComponent(SearchIdComponentContact);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

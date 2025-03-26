@@ -1,18 +1,18 @@
 import {Component, input} from '@angular/core';
-import {ContactApi} from "../../../service/contact.api";
+import {ContactApi} from "../../../../service/contact.api";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {Contact} from "../../../model/contact.model";
+import {Contact} from "../../../../model/contact.model";
 
 @Component({
-  selector: 'app-search-contact',
+  selector: 'app-search-criteria-contact',
   imports: [
     ReactiveFormsModule,
     FormsModule
   ],
-  templateUrl: './search-contact.component.html',
-  styleUrl: './search-contact.component.scss'
+  templateUrl: './search-criteria-contact.component.html',
+  styleUrl: './search-criteria-contact.component.scss'
 })
-export class SearchContactComponent {
+export class SearchCriteriaContactComponent {
 
   readonly contacts = input.required<Contact[]>()
 

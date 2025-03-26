@@ -5,7 +5,8 @@ import {ContactApi} from "../../service/contact.api";
 import {DeleteContactComponent} from "./delete/delete-contact.component";
 import {AddContactComponent} from "./add/add-contact.component";
 import {UpdateContactComponent} from "./update/update-contact.component";
-import {SearchContactComponent} from "./search/search-contact.component";
+import {SearchCriteriaContactComponent} from "./search/search-criteria/search-criteria-contact.component";
+import {SearchIdComponentContact} from "./search/search-id-contact/search-id.component-contact";
 
 @Component({
   selector: 'app-contact',
@@ -14,7 +15,8 @@ import {SearchContactComponent} from "./search/search-contact.component";
     DeleteContactComponent,
     AddContactComponent,
     UpdateContactComponent,
-    SearchContactComponent
+    SearchCriteriaContactComponent,
+    SearchIdComponentContact
   ],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss'

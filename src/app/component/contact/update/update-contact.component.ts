@@ -43,11 +43,10 @@ export class UpdateContactComponent {
   updateContact(contact:Contact) {
     this.contactApiService.updateContact(contact.id!, contact).subscribe({
       next:(response) => {
-        console.log(`nouveau contact ajouté: ${response}`)
-        this.notify.emit()
-
+        console.log(`nouveau contact ajouté: ${response}`);
         this.errorMessageUpdate = undefined;
         this.cleanUpdateFomulaire();
+        this.notify.emit();
       },
       error:(error) => {
         const errorToPrint = `Désolé, une erreur a été remonté durant la modification du contact: ${error.status}, ${error.statusText} `
