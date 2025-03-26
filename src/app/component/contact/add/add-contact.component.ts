@@ -21,7 +21,6 @@ export class AddContactComponent {
   phoneNumberToAdd?: string ;
   emailToAdd?: string ;
 
-
   constructor(private contactApiService: ContactApi) {
   }
 
@@ -39,12 +38,10 @@ export class AddContactComponent {
       this.errorMessageCreate = "Erreur, Nom ou Prenom absent"
     }
   }
-
   createContact(contact:Contact) {
     this.contactApiService.addContact(contact).subscribe({
       next:(response) => {
         console.log(`nouveau contact ajouté: ${response}`)
-        // this.getAllContacts()
         this.notify.emit()
 
         this.errorMessageCreate = undefined;
@@ -64,6 +61,4 @@ export class AddContactComponent {
     this.phoneNumberToAdd = undefined;
     this.emailToAdd = undefined;
   }
-
-
 }

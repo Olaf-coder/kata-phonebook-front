@@ -14,38 +14,8 @@
 
     <app-add-contact (notify)="getAllContacts()" ></app-add-contact>
 
-<!--    <app-update-contact (notify)="getAllContacts()"></app-update-contact>-->
-    <hr>
-    <h2>Modification de contact</h2>
-    @if (errorMessageUpdate) {
-        <div>{{errorMessageUpdate}}</div>
-    }
-    <hr>
-    <div class="groupe">
-        <input type="text" [(ngModel)]="idToUpdate" id="idToUpdate" [value]="idToUpdate"/>
-        <input type="text" [(ngModel)]="firstNameToUpdate" id="firstNameToUpdate" [value]="firstNameToUpdate" placeholder="Prénom"/>
-        <input type="text" [(ngModel)]="familyNameToUpdate" id="familyNameToUpdate" [value]="familyNameToUpdate" placeholder="Nom"/>
-        <input type="text" [(ngModel)]="phoneNumberToUpdate" id="phoneNumberToUpdate" [value]="phoneNumberToUpdate" placeholder="Numéro de téléphone"/>
-        <input type="text" [(ngModel)]="emailToUpdate" id="emailToUpdate" [value]="emailToUpdate" placeholder="Adresse email"/>
-        <button (click)="sendContactToUpdate()">Mettre à jour</button>
-    </div>
+    <app-update-contact (notify)="getAllContacts()"></app-update-contact>
 
-
-    <app-search-contact></app-search-contact>
-    <br/><br/>
-    <h2>Recherche de contact</h2>
-    <div class="groupe">
-        <input type="text" [(ngModel)]="firstNameToSearch" id="firstNameToSearch" [value]="firstNameToSearch" placeholder="Prénom"/>
-        <input type="text" [(ngModel)]="familyNameToSearch" id="familyNameToSearch" [value]="familyNameToSearch" placeholder="Nom"/>
-        <button (click)="rechercherContact()">Rechercher</button>
-    </div>
-
-    @if(errorMessageSearch) {
-     {{errorMessageSearch}}
-    }
-    @for (contact of contactsSearched; track contact.id) {
-        <div>{{contact.id}}, {{contact.firstName}}, {{contact.familyName}}, {{contact.email}}, {{contact.phoneNumber}}</div>
-    }
-
+    <app-search-contact [contacts]="contacts"></app-search-contact>
 
 </div>

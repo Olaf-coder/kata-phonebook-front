@@ -12,19 +12,24 @@ import {ContactApi} from "../../../service/contact.api";
 })
 export class DeleteContactComponent {
 
-  idToDelete:number = 0;
+  idToDelete:number|undefined;
   readonly notify = output<void>();
 
   constructor(private contactApiService: ContactApi) {
   }
 
-  deleteContactById(id: number) {
-    this.contactApiService.deleteContact(id).subscribe({
+  deleteContactById(id: number|undefined) {
+    this.contactApiService.deleteContact(id!).subscribe({
       next:()=> {
         console.log('DELETE OK')
         this.notify.emit();
+        this.cleanDeleteForm();
       }
     })
+  }
+
+  cleanDeleteForm() {
+    this.idToDelete = undefined;
   }
 
 }
