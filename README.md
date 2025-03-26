@@ -37,14 +37,18 @@ Idem pour lancer le projet, il faut lancer a la racine du projet la commande sui
 
 Le front-end ne peut pas se lancer sans le projet Back-end.
 
-Pour la configuration, quand le projet se lance il est actuellement sur le port 4200. (http://localhost:4200)
+Pour la configuration, quand le projet se lance il est actuellement sur le port 4200:
+
+    http://localhost:4200
 
 Si jamais le port d'ecoute pour le back-end a été changé manuellement, vous pouvez changer ici aussi le port d'ecoute. Il faut modifier la ligne suivante dans src\proxy.conf.json:
 
     {
         "/api": {
             "target": "http://localhost:8080",
+            ...
         }
+        ...
     }
 
 Lorsque des données sont enregistrées, vous les trouverez à la racine du dossier dans phonebookDB.mv.db.
