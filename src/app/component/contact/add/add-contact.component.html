@@ -1,1 +1,12 @@
-<p>add-contact works!</p>
+<hr>
+<h2>Ajout de contact</h2>
+@if (errorMessageCreate) {
+    <div>{{errorMessageCreate}}</div>
+}
+<div class="groupe">
+    <input type="text" [(ngModel)]="firstNameToAdd" id="firstNameToAdd" [value]="firstNameToAdd" placeholder="Prénom"/>
+    <input type="text" [(ngModel)]="familyNameToAdd" id="familyNameToAdd" [value]="familyNameToAdd" placeholder="Nom"/>
+    <input type="text" [(ngModel)]="phoneNumberToAdd" id="phoneNumberToAdd" [value]="phoneNumberToAdd" placeholder="Numéro de téléphone"/>
+    <input type="text" [(ngModel)]="emailToAdd" id="emailToAdd" [value]="emailToAdd" placeholder="Adresse email"/>
+    <button (click)="sendContactToCreate()">Creer</button>
+</div>

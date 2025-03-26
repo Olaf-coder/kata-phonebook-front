@@ -22,7 +22,7 @@ import {SearchContactComponent} from "./search/search-contact.component";
 export class ContactComponent {
 
   errorMessageGet?:string
-  // errorMessageUpdate?: string;
+  errorMessageUpdate?: string;
   errorMessageSearch?: string;
 
   contacts: Contact[] = [];
@@ -31,12 +31,12 @@ export class ContactComponent {
 
   firstNameToSearch: string ;
   familyNameToSearch: string ;
-  //
-  // idToUpdate: number = 0;
-  // firstNameToUpdate?: string ;
-  // familyNameToUpdate?: string ;
-  // phoneNumberToUpdate?: string;
-  // emailToUpdate?: string;
+
+  idToUpdate: number = 0;
+  firstNameToUpdate?: string ;
+  familyNameToUpdate?: string ;
+  phoneNumberToUpdate?: string;
+  emailToUpdate?: string;
 
   constructor(private contactApiService: ContactApi) {
   }
@@ -60,38 +60,38 @@ export class ContactComponent {
     })
   }
 
-  // updateContact(contact:Contact) {
-  //   this.contactApiService.updateContact(contact.id!, contact).subscribe({
-  //     next:(response) => {
-  //       console.log(`nouveau contact ajouté: ${response}`)
-  //       this.getAllContacts()
-  //       this.errorMessageUpdate = undefined;
-  //       this.cleanUpdateFomulaire();
-  //     },
-  //     error:(error) => {
-  //       const errorToPrint = `Désolé, une erreur a été remonté durant la modification du contact: ${error.status}, ${error.statusText} `
-  //       console.error(errorToPrint);
-  //       this.errorMessageUpdate = errorToPrint;
-  //     }
-  //   })
-  // }
-  //
-  // sendContactToUpdate() {
-  //   console.log(`contact to send: ${this.idToUpdate}, ${this.firstNameToUpdate}, ${this.familyNameToUpdate}, ${this.phoneNumberToUpdate}, ${this.emailToUpdate}`)
-  //   if(this.firstNameToUpdate && this.familyNameToUpdate) {
-  //     var contact : Contact = {id: this.idToUpdate, firstName: this.firstNameToUpdate, familyName: this.familyNameToUpdate, phoneNumber: this.phoneNumberToUpdate, email: this.phoneNumberToUpdate}
-  //     this.updateContact(contact);
-  //   } else {
-  //     this.errorMessageUpdate = "Erreur, Nom ou Prenom absent"
-  //   }
-  // }
-  //
-  // cleanUpdateFomulaire() {
-  //   this.firstNameToUpdate = undefined;
-  //   this.familyNameToUpdate = undefined;
-  //   this.phoneNumberToUpdate = undefined;
-  //   this.emailToUpdate = undefined;
-  // }
+  updateContact(contact:Contact) {
+    this.contactApiService.updateContact(contact.id!, contact).subscribe({
+      next:(response) => {
+        console.log(`nouveau contact ajouté: ${response}`)
+        this.getAllContacts()
+        this.errorMessageUpdate = undefined;
+        this.cleanUpdateFomulaire();
+      },
+      error:(error) => {
+        const errorToPrint = `Désolé, une erreur a été remonté durant la modification du contact: ${error.status}, ${error.statusText} `
+        console.error(errorToPrint);
+        this.errorMessageUpdate = errorToPrint;
+      }
+    })
+  }
+
+  sendContactToUpdate() {
+    console.log(`contact to send: ${this.idToUpdate}, ${this.firstNameToUpdate}, ${this.familyNameToUpdate}, ${this.phoneNumberToUpdate}, ${this.emailToUpdate}`)
+    if(this.firstNameToUpdate && this.familyNameToUpdate) {
+      var contact : Contact = {id: this.idToUpdate, firstName: this.firstNameToUpdate, familyName: this.familyNameToUpdate, phoneNumber: this.phoneNumberToUpdate, email: this.phoneNumberToUpdate}
+      this.updateContact(contact);
+    } else {
+      this.errorMessageUpdate = "Erreur, Nom ou Prenom absent"
+    }
+  }
+
+  cleanUpdateFomulaire() {
+    this.firstNameToUpdate = undefined;
+    this.familyNameToUpdate = undefined;
+    this.phoneNumberToUpdate = undefined;
+    this.emailToUpdate = undefined;
+  }
 
   cleanSearchFomulaire() {
     this.familyNameToSearch = "";
