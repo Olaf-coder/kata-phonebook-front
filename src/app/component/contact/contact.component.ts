@@ -6,7 +6,7 @@ import {DeleteContactComponent} from "./delete/delete-contact.component";
 import {AddContactComponent} from "./add/add-contact.component";
 import {UpdateContactComponent} from "./update/update-contact.component";
 import {SearchCriteriaContactComponent} from "./search/search-criteria/search-criteria-contact.component";
-import {SearchIdComponentContact} from "./search/search-id-contact/search-id.component-contact";
+import {SearchIdContactComponent} from "./search/search-id-contact/search-id-contact.component";
 
 @Component({
   selector: 'app-contact',
@@ -16,7 +16,7 @@ import {SearchIdComponentContact} from "./search/search-id-contact/search-id.com
     AddContactComponent,
     UpdateContactComponent,
     SearchCriteriaContactComponent,
-    SearchIdComponentContact
+    SearchIdContactComponent
   ],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss'

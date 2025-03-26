@@ -9,10 +9,10 @@ import {ContactApi} from "../../../../service/contact.api";
     ReactiveFormsModule,
     FormsModule
   ],
-  templateUrl: './search-id.component-contact.html',
-  styleUrl: './search-id.component-contact.scss'
+  templateUrl: './search-id-contact.component.html',
+  styleUrl: './search-id-contact.component.scss'
 })
-export class SearchIdComponentContact {
+export class SearchIdContactComponent {
 
   contactResult: Contact;
 
