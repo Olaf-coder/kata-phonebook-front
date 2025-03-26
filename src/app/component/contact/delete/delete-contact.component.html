@@ -1,0 +1,8 @@
+<p>delete-contact works!</p>
+
+<br/><br/>
+<h2>Supression de contact</h2>
+<div class="groupe">
+    <input type="text" [(ngModel)]="idToDelete" id="test" [value]="idToDelete"/>
+    <button (click)="deleteContactById(idToDelete)">Supprimer</button>
+</div>

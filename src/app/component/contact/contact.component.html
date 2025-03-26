@@ -1,6 +1,5 @@
 <div id="app">
 
-
     @if (errorMessageGet) {
         {{errorMessageGet}}
     }
@@ -8,17 +7,12 @@
     @for (contact of contacts; track contact.id) {
         <div>{{contact.id}}, {{contact.firstName}}, {{contact.familyName}}, {{contact.email}}, {{contact.phoneNumber}}</div>
     } @empty {
-        <div>Nothing to show !</div>
+        <div>Votre carnet de contact est vide</div>
     }
 
-    <br/><br/>
-    <h2>Supression de contact</h2>
-    <div class="groupe">
-        <input type="text" [(ngModel)]="idToDelete" id="test" [value]="idToDelete"/>
-        <button (click)="deleteContactById(idToDelete)">Supprimer</button>
-    </div>
+    <app-delete-contact (notify)="getAllContacts()"></app-delete-contact>
 
-
+    <app-add-contact></app-add-contact>
     <br/><br/>
     <h2>Ajout de contact</h2>
     @if (errorMessageCreate) {
@@ -32,6 +26,7 @@
         <button (click)="sendContactToCreate()">Creer</button>
     </div>
 
+    <app-update-contact></app-update-contact>
     <br/><br/>
     <h2>Modification de contact</h2>
     @if (errorMessageUpdate) {
@@ -46,21 +41,21 @@
         <button (click)="sendContactToUpdate()">Mettre à jour</button>
     </div>
 
+
+    <app-search-contact></app-search-contact>
     <br/><br/>
     <h2>Recherche de contact</h2>
-    @if(errorMessageSearch) {
-     {{errorMessageSearch}}
-    }
     <div class="groupe">
         <input type="text" [(ngModel)]="firstNameToSearch" id="firstNameToSearch" [value]="firstNameToSearch" placeholder="Prénom"/>
         <input type="text" [(ngModel)]="familyNameToSearch" id="familyNameToSearch" [value]="familyNameToSearch" placeholder="Nom"/>
         <button (click)="rechercherContact()">Rechercher</button>
     </div>
 
+    @if(errorMessageSearch) {
+     {{errorMessageSearch}}
+    }
     @for (contact of contactsSearched; track contact.id) {
         <div>{{contact.id}}, {{contact.firstName}}, {{contact.familyName}}, {{contact.email}}, {{contact.phoneNumber}}</div>
-    } @empty {
-        <div>Veuillez faire une recherche</div>
     }
 
 

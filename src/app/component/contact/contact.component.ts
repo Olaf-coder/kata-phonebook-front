@@ -2,11 +2,19 @@ import {Component, OnInit, input} from '@angular/core';
 import {FormsModule} from "@angular/forms";
 import {Contact} from "../../model/contact.model";
 import {ContactApi} from "../../service/contact.api";
+import {DeleteContactComponent} from "./delete/delete-contact.component";
+import {AddContactComponent} from "./add/add-contact.component";
+import {UpdateContactComponent} from "./update/update-contact.component";
+import {SearchContactComponent} from "./search/search-contact.component";
 
 @Component({
   selector: 'app-contact',
   imports: [
-    FormsModule
+    FormsModule,
+    DeleteContactComponent,
+    AddContactComponent,
+    UpdateContactComponent,
+    SearchContactComponent
   ],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss'
@@ -21,7 +29,7 @@ export class ContactComponent {
   contacts: Contact[] = [];
   contactsSearched: Contact[] = [];
 
-  idToDelete:number = 0;
+  // idToDelete:number = 0;
 
 
   firstNameToSearch: string ;
@@ -38,8 +46,6 @@ export class ContactComponent {
   familyNameToUpdate?: string ;
   phoneNumberToUpdate?: string;
   emailToUpdate?: string;
-
-
 
   constructor(private contactApiService: ContactApi) {
   }
@@ -63,14 +69,14 @@ export class ContactComponent {
     })
   }
 
-  deleteContactById(id: number) {
-    this.contactApiService.deleteContact(id).subscribe({
-      next:()=> {
-        console.log('DELETE OK')
-        this.getAllContacts();
-      }
-    })
-  }
+  // deleteContactById(id: number) {
+  //   this.contactApiService.deleteContact(id).subscribe({
+  //     next:()=> {
+  //       console.log('DELETE OK')
+  //       this.getAllContacts();
+  //     }
+  //   })
+  // }
 
   createContact(contact:Contact) {
     this.contactApiService.addContact(contact).subscribe({
@@ -158,8 +164,13 @@ export class ContactComponent {
       if (this.firstNameToSearch) {
         this.contactsSearched = this.contacts.filter(contact => contact.firstName.toLowerCase().includes(this.firstNameToSearch.toLowerCase()))
       }
-      this.errorMessageSearch=undefined
-      this.cleanSearchFomulaire();
+      if (this.contactsSearched.length == 0)
+      {
+        this.errorMessageSearch= "Aucun des contacts ne correspond a votre recherche"
+      } else {
+        this.errorMessageSearch=undefined
+        this.cleanSearchFomulaire();
+      }
     } else {
       this.errorMessageSearch="Au moins un des champs doit être renseigné"
     }
