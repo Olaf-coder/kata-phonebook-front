@@ -37,7 +37,7 @@ export class SearchCriteriaContactComponent {
         this.contactsSearched = this.contactsSearched.filter(contact => contact.familyName.toLowerCase().includes(this.familyNameToSearch.toLowerCase()))
       }
       if (this.firstNameToSearch) {
-        this.contactsSearched = this.contacts().filter(contact => contact.firstName.toLowerCase().includes(this.firstNameToSearch.toLowerCase()))
+        this.contactsSearched = this.contactsSearched.filter(contact => contact.firstName.toLowerCase().includes(this.firstNameToSearch.toLowerCase()))
       }
       if (this.contactsSearched.length == 0)
       {
