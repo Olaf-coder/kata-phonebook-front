@@ -31,12 +31,13 @@ export class SearchCriteriaContactComponent {
   }
 
   rechercherContact() {
-    if(this.familyNameToSearch || this.firstNameToSearch) {
+    this.contactsSearched = [];
+    if(this.isStringValid(this.familyNameToSearch) || this.isStringValid(this.firstNameToSearch)) {
       this.contactsSearched = this.contacts()
-      if (this.familyNameToSearch) {
+      if (this.isStringValid(this.familyNameToSearch)) {
         this.contactsSearched = this.contactsSearched.filter(contact => contact.familyName.toLowerCase().includes(this.familyNameToSearch.toLowerCase()))
       }
-      if (this.firstNameToSearch) {
+      if (this.isStringValid(this.firstNameToSearch)) {
         this.contactsSearched = this.contactsSearched.filter(contact => contact.firstName.toLowerCase().includes(this.firstNameToSearch.toLowerCase()))
       }
       if (this.contactsSearched.length == 0)
@@ -50,4 +51,9 @@ export class SearchCriteriaContactComponent {
       this.errorMessageSearch="Au moins un des champs doit être renseigné"
     }
   }
+
+  isStringValid(str: string): boolean {
+   return !!(str?.trim());
+  }
+
 }
