@@ -22,6 +22,14 @@ export class SearchIdContactComponent {
   constructor(private contactApiService : ContactApi) {
   }
 
+  sendIdToSearch() {
+    if (this.idToSearch) {
+      this.searchContactById( this.idToSearch)
+    } else {
+      this.errorMessageSearch = "Erreur: id absent";
+    }
+  }
+
   searchContactById(id: number|undefined) {
     this.contactApiService.getContact(id!).subscribe({
       next:(response)=> {
@@ -31,7 +39,7 @@ export class SearchIdContactComponent {
         this.errorMessageSearch = undefined;
       },
       error:(error) => {
-        const errorToPrint = `Désolé, une erreur a été remonté durant la modification du contact: ${error.status}, ${error.statusText} `
+        const errorToPrint = `Désolé, une erreur a été remonté durant la recherche du contact: ${error.status}, ${error.statusText} `
         console.error(errorToPrint);
         this.errorMessageSearch = errorToPrint;
       }

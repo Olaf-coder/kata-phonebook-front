@@ -5,7 +5,7 @@
     }
     <h1>Contacts</h1>
     @for (contact of contacts; track contact.id) {
-        <div>{{contact.id}}, {{contact.firstName}}, {{contact.familyName}}, {{contact.email}}, {{contact.phoneNumber}}</div>
+        <div>{{contact.id}}, {{contact.firstName}}, {{contact.familyName}}, {{contact.phoneNumber}}, {{contact.email}}</div>
     } @empty {
         <div>Votre carnet de contact est vide</div>
     }

@@ -8,7 +8,6 @@ import {Observable, tap} from "rxjs";
 })
 export class ContactApi {
   private http = inject(HttpClient);
-  private contacts = signal<Contact[]>([])
   readonly baseEndpoint = "api/v1.0/contacts/"
 
 
@@ -31,7 +30,5 @@ export class ContactApi {
   deleteContact(id:number): Observable<void> {
     return this.http.delete<void>(`${this.baseEndpoint}${id}`);
   }
-
-
 
 }

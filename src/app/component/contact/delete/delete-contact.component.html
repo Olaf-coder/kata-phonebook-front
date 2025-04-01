@@ -2,6 +2,6 @@
 <hr>
 <h2>Supression de contact</h2>
 <div class="groupe">
-    <input type="text" [(ngModel)]="idToDelete" id="test" [value]="idToDelete" placeholder="id du contact a supprimer"/>
+    <input type="number" [(ngModel)]="idToDelete" id="test" [value]="idToDelete" placeholder="id du contact a supprimer"/>
     <button (click)="deleteContactById(idToDelete)">Supprimer</button>
 </div>

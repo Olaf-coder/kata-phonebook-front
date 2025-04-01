@@ -31,7 +31,7 @@ export class AddContactComponent {
         firstName: this.firstNameToAdd,
         familyName: this.familyNameToAdd,
         phoneNumber: this.phoneNumberToAdd,
-        email: this.phoneNumberToAdd
+        email: this.emailToAdd
       }
       this.createContact(contact);
     } else {

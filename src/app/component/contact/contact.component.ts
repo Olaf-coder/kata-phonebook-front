@@ -32,12 +32,11 @@ export class ContactComponent {
 
   ngOnInit(): void {
     this.getAllContacts();
-
   }
 
   getAllContacts(){
     this.contactApiService.getContacts().subscribe({
-      next:(response)=>{
+      next:(response)=> {
         this.contacts = response;
         console.log('GET OK: ', response);
       },

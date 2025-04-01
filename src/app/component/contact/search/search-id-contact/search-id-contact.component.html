@@ -2,7 +2,7 @@
 <h2>Recherche de contact par ID</h2>
 <div class="groupe">
     <input type="number" [(ngModel)]="idToSearch" id="idToSearch" [value]="idToSearch" placeholder="Id du contact a trouver"/>
-    <button (click)="searchContactById(idToSearch)">Rechercher</button>
+    <button (click)="sendIdToSearch()">Rechercher</button>
 </div>
 
 @if(errorMessageSearch) {
@@ -10,5 +10,5 @@
 }
 
 @if(contactResult) {
-    <div>{{contactResult.id}}, {{contactResult.firstName}}, {{contactResult.familyName}}, {{contactResult.email}}, {{contactResult.phoneNumber}}</div>
+    <div>{{contactResult.id}}, {{contactResult.firstName}}, {{contactResult.familyName}}, {{contactResult.phoneNumber}}, {{contactResult.email}}</div>
 }
