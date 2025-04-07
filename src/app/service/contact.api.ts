@@ -7,7 +7,7 @@ import {Observable} from "rxjs";
   providedIn: 'root'
 })
 export class ContactApi {
-  private http = inject(HttpClient);
+  readonly http = inject(HttpClient);
   readonly baseEndpoint = "api/v1.0/contacts/"
 
 
