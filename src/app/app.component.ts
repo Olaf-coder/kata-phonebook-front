@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import {ContactComponent} from "./component/contact/contact.component";
 
 @Component({
   selector: 'app-root',

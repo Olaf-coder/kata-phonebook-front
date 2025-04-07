@@ -1,4 +1,4 @@
-import {Component, input} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {Contact} from "../../../../model/contact.model";
 import {ContactApi} from "../../../../service/contact.api";

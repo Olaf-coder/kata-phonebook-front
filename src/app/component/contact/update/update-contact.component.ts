@@ -28,7 +28,7 @@ export class UpdateContactComponent {
   sendContactToUpdate() {
     console.log(`contact to send: ${this.idToUpdate}, ${this.firstNameToUpdate}, ${this.familyNameToUpdate}, ${this.phoneNumberToUpdate}, ${this.emailToUpdate}`)
     if(this.firstNameToUpdate && this.familyNameToUpdate && this.idToUpdate) {
-      var contact : Contact = {
+      const contact : Contact = {
         id: this.idToUpdate,
         firstName: this.firstNameToUpdate,
         familyName: this.familyNameToUpdate,

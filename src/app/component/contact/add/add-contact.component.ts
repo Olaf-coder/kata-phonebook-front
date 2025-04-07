@@ -27,7 +27,7 @@ export class AddContactComponent {
   sendContactToCreate() {
     console.log(`contact to send: ${this.firstNameToAdd}, ${this.familyNameToAdd}, ${this.phoneNumberToAdd}, ${this.emailToAdd}`)
     if(this.firstNameToAdd && this.familyNameToAdd) {
-      var contact: Contact = {
+      const contact: Contact = {
         firstName: this.firstNameToAdd,
         familyName: this.familyNameToAdd,
         phoneNumber: this.phoneNumberToAdd,
