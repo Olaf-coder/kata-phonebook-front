@@ -36,12 +36,12 @@ export class ContactComponent implements OnInit {
 
   getAllContacts(){
     this.contactApiService.getContacts().subscribe({
-      next:(response)=> {
+      next:(response) => {
         this.contacts = response;
         console.log('GET OK: ', response);
       },
       error: (error) => {
-        const errorToPrint = `Désolé, une erreur a été remonté durant la récuperation: ${error.status}, ${error.statusText} `
+        const errorToPrint = `Désolé, une erreur a été remonté durant la récuperation: ${error.status}, ${error.statusText}`
         console.error('Désolé, une erreur a été remonté durant la récuperation', error);
         this.errorMessageGet = errorToPrint;
       }

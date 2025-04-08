@@ -22,4 +22,24 @@ describe('AddContactComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should cleanAjoutFomulaire() clean all values', () => {
+    //given
+    component.firstNameToAdd = "firstName";
+    component.familyNameToAdd = "familyName";
+    component.phoneNumberToAdd = "0102030405";
+    component.emailToAdd = "email";
+
+    //when
+    component.cleanAjoutFomulaire()
+
+    //then
+    expect(component.firstNameToAdd).toBeUndefined();
+    expect(component.familyNameToAdd).toBeUndefined();
+    expect(component.emailToAdd).toBeUndefined();
+    expect(component.phoneNumberToAdd).toBeUndefined();
+
+  });
+
+
 });

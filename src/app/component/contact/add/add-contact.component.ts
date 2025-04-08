@@ -38,6 +38,7 @@ export class AddContactComponent {
       this.errorMessageCreate = "Erreur, Nom ou Prenom absent"
     }
   }
+
   createContact(contact:Contact) {
     this.contactApiService.addContact(contact).subscribe({
       next:(response) => {
