@@ -35,7 +35,7 @@ export class SearchIdContactComponent {
       next:(response)=> {
         console.log('SEARCH OK');
         this.contactResult = response;
-        this.cleanSearchFomulaire();
+        this.cleanSearchForm();
         this.errorMessageSearch = undefined;
       },
       error:(error) => {
@@ -46,7 +46,7 @@ export class SearchIdContactComponent {
     })
   }
 
-  cleanSearchFomulaire() {
+  cleanSearchForm() {
     this.idToSearch = undefined;
   }
 }

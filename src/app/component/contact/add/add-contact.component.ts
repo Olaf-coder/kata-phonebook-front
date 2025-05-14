@@ -46,7 +46,7 @@ export class AddContactComponent {
         this.notify.emit()
 
         this.errorMessageCreate = undefined;
-        this.cleanAjoutFomulaire();
+        this.cleanFormAdd();
       },
       error:(error) => {
         const errorToPrint = `Désolé, une erreur a été remonté durant la creation du contact: ${error.status}, ${error.statusText} `
@@ -56,7 +56,7 @@ export class AddContactComponent {
     })
   }
 
-  cleanAjoutFomulaire() {
+  cleanFormAdd() {
     this.firstNameToAdd = undefined;
     this.familyNameToAdd = undefined;
     this.phoneNumberToAdd = undefined;

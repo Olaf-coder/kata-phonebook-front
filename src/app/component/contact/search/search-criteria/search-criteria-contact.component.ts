@@ -25,12 +25,12 @@ export class SearchCriteriaContactComponent {
   constructor(private contactApiService : ContactApi) {
   }
 
-  cleanSearchFomulaire() {
+  cleanSearchForm() {
     this.familyNameToSearch = "";
     this.firstNameToSearch = "";
   }
 
-  rechercherContact() {
+  searchContact() {
     this.contactsSearched = [];
     if(this.isStringValid(this.familyNameToSearch) || this.isStringValid(this.firstNameToSearch)) {
       this.contactsSearched = this.contacts()
@@ -45,7 +45,7 @@ export class SearchCriteriaContactComponent {
         this.errorMessageSearch= "Aucun des contacts ne correspond a votre recherche"
       } else {
         this.errorMessageSearch=undefined
-        this.cleanSearchFomulaire();
+        this.cleanSearchForm();
       }
     } else {
       this.errorMessageSearch="Au moins un des champs doit être renseigné"

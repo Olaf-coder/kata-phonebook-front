@@ -44,7 +44,7 @@ export class UpdateContactComponent {
     this.contactApiService.updateContact(contact.id!, contact).subscribe({
       next:(response) => {
         console.log(`nouveau contact ajouté: ${response}`);
-        this.cleanUpdateFomulaire();
+        this.cleanUpdateForm();
         this.errorMessageUpdate = undefined;
 
         this.notify.emit();
@@ -57,7 +57,7 @@ export class UpdateContactComponent {
     })
   }
 
-  cleanUpdateFomulaire() {
+  cleanUpdateForm() {
     this.idToUpdate = undefined;
     this.firstNameToUpdate = undefined;
     this.familyNameToUpdate = undefined;

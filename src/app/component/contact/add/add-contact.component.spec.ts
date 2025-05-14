@@ -23,7 +23,7 @@ describe('AddContactComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should cleanAjoutFomulaire() clean all values', () => {
+  it('should cleanFormAdd() clean all values', () => {
     //given
     component.firstNameToAdd = "firstName";
     component.familyNameToAdd = "familyName";
@@ -31,7 +31,7 @@ describe('AddContactComponent', () => {
     component.emailToAdd = "email";
 
     //when
-    component.cleanAjoutFomulaire()
+    component.cleanFormAdd()
 
     //then
     expect(component.firstNameToAdd).toBeUndefined();

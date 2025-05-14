@@ -5,7 +5,7 @@
 <div class="groupe">
     <input type="text" [(ngModel)]="firstNameToSearch" id="firstNameToSearch" [value]="firstNameToSearch" placeholder="Prénom"/>
     <input type="text" [(ngModel)]="familyNameToSearch" id="familyNameToSearch" [value]="familyNameToSearch" placeholder="Nom"/>
-    <button (click)="rechercherContact()">Rechercher</button>
+    <button (click)="searchContact()">Rechercher</button>
 </div>
 
 @if(errorMessageSearch) {
